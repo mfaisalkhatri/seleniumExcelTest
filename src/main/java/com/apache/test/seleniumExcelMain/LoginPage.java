@@ -1,10 +1,10 @@
 package com.apache.test.seleniumExcelMain;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import junit.framework.Assert;
+import org.testng.Assert;
 
 public class LoginPage {
 
@@ -26,10 +26,14 @@ public class LoginPage {
 
 		WebElement submitBtn = driver.findElement(By.id("login-component-login-submit-button"));
 		submitBtn.click();
-		
-		WebElement errMsg = driver.findElement(By.cssSelector(".error-message"));
-		String msg = errMsg.getText();
-		Assert.assertEquals(message, msg);
+
+		try {
+			WebElement errMsg = driver.findElement(By.cssSelector(".error-message"));
+			String msg = errMsg.getText();
+		Assert.assertEquals(msg,message);
+		} catch (NoSuchElementException e) {
+			return;
+		}
 	}
 
 }

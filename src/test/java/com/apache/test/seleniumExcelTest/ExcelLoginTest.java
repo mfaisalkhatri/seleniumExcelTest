@@ -18,7 +18,7 @@ public class ExcelLoginTest {
 
 	@BeforeMethod
 	public void StartUp() {
-		String chromepath = "F:\\Driver\\Chrome\\chromedriver.exe";
+		String chromepath = "D:\\Driver\\Chrome\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", chromepath);
 		driver = new ChromeDriver();
 
@@ -45,16 +45,17 @@ public class ExcelLoginTest {
 
 	@DataProvider(name = "personalData")
 	public Object[][] passData() {
-		String xlPath = "F:\\Eclipse_Neon\\Workspace\\seleniumExcelTest\\TestData\\LoginData.xlsx";
+		String xlPath = "D:\\Github\\seleniumExcelTest\\TestData\\LoginData.xlsx";
 		ExcelDataConfig excl = new ExcelDataConfig(xlPath);
 		int rows = excl.getRowCount(0);
+		int col = 3;
 
-		Object[][] data = new Object[rows][3];
+		Object[][] data = new Object[rows][col];
 		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < col; j++) {
 
-			data[i][0] = excl.getData(0, i + 1, 0);
-			data[i][1] = excl.getData(0, i + 1, 1);
-			data[i][2] = excl.getData(0, i + 1, 2);
+				data[i][j] = excl.getData(0, i + 1, j);
+			}
 		}
 		return data;
 	}

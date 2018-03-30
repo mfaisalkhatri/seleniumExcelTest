@@ -44,7 +44,6 @@ public class ExcelDataConfig {
 		
 		int row = wb.getSheetAt(sheetIndex).getLastRowNum();
 		//row = row +1;
-		
 		return row;
 	}
 }
